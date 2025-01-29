@@ -100,6 +100,12 @@ def save_note():
     save_data()
 
 def delete_note():
+    if len(list_notes.selectedItems()) == 0:
+        msg = QMessageBox()
+        msg.setWindowTitle('Ошибка')
+        msg.setText('Выделите заметку для удаления')
+        msg.exec()
+        return
     name = list_notes.selectedItems()[0].text()
     del notes[name]
     list_notes.clear()
